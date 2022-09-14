@@ -1,5 +1,6 @@
 package hexlet.code.controllers;
 
+import hexlet.code.UrlParser;
 import hexlet.code.domain.Url;
 import hexlet.code.domain.query.QUrl;
 import io.javalin.http.Handler;
@@ -31,11 +32,11 @@ public final class UrlController {
                 .boxed()
                 .collect(Collectors.toList());
 
-//        ctx.attribute("urls", urls);
-//        ctx.attribute("pages", pages);
-//        ctx.attribute("currentPage", currentPage);
+        ctx.attribute("urls", urls);
+        ctx.attribute("pages", pages);
+        ctx.attribute("currentPage", currentPage);
 
-        ctx.render("main.html");
+        ctx.render("listUrls.html");
     };
 
     public static Handler showUrl = ctx -> {
@@ -54,9 +55,8 @@ public final class UrlController {
     };
 
     public static Handler createUrl = ctx -> {
-        String name = ctx.formParam("url");
-
-        if (name.isEmpty()) {
+        String name = UrlParser.getUrl(ctx.formParam("url"));
+        if (name == null) {
             ctx.sessionAttribute("flash", "Некорректный URL");
             ctx.sessionAttribute("flash-type", "danger");
             ctx.attribute("url", name);

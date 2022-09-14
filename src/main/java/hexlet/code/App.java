@@ -22,6 +22,7 @@ public final class App {
 
     private static String getMode() {
         return System.getenv().getOrDefault("APP_ENV", "development");
+        // development production
     }
 
     private static boolean isProduction() {
