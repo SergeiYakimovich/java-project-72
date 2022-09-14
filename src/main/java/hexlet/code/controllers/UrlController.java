@@ -52,7 +52,8 @@ public final class UrlController {
             ctx.sessionAttribute("flash", "Некорректный URL");
             ctx.sessionAttribute("flash-type", "danger");
             ctx.attribute("url", name);
-            ctx.render("main.html");
+//            ctx.render("main.html");
+            ctx.redirect("/");
             return;
         }
 
@@ -63,7 +64,8 @@ public final class UrlController {
             ctx.sessionAttribute("flash", "Страница уже существует");
             ctx.sessionAttribute("flash-type", "danger");
             ctx.attribute("url", name);
-            ctx.render("main.html");
+//            ctx.render("main.html");
+            ctx.redirect("/");
             return;
         }
 
