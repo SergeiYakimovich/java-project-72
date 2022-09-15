@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Entity
@@ -51,6 +52,12 @@ public class Url extends Model {
 
     public final void addUrlChecks(UrlCheck newUrlCheckValue) {
         this.urlChecks.add(newUrlCheckValue);
+    }
+
+    public final UrlCheck getLastUrlCheck() {
+        return urlChecks.stream()
+                .max(Comparator.comparing(x -> x.getCreatedAt()))
+                .orElse(null);
     }
 
 }

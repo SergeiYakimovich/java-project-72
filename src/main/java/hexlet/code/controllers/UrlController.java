@@ -80,8 +80,10 @@ public final class UrlController {
         if (url == null) {
             throw new NotFoundResponse();
         }
+
         url.addUrlChecks(UrlHandler.checkUrl(url));
         url.update();
+//        url.save();
         ctx.attribute("url", url);
         ctx.render("showUrl.html");
 //        ctx.redirect("/urls");
