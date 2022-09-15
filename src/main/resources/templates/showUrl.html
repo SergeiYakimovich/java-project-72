@@ -8,7 +8,7 @@
 <section layout:fragment="content">
     <div class="container-lg mt-5">
         <h2>Сайт </h2>
-        <table th:object="${url}">
+        <table class="table table-bordered table-hover mt-3" th:object="${url}">
             <tr>
                 <td>ID </td>
                 <td th:text="*{id}"></td>
@@ -22,7 +22,6 @@
                 <td th:text="*{createdAt}"></td>
             </tr>
         </table>
-
         <h3>Проверки</h3>
         <nav aria-label="Control buttons">
             <div class="card-footer justify-content-center mt-5" th:object="${url}">

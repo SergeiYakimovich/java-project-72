@@ -62,7 +62,7 @@ class AppTest {
     class RootTest {
 
         @Test
-        void testIndex() {
+        void testMain() {
             HttpResponse<String> response = Unirest.get(baseUrl).asString();
             assertThat(response.getStatus()).isEqualTo(200);
             assertThat(response.getBody()).contains("Анализатор страниц");
@@ -96,7 +96,7 @@ class AppTest {
             assertThat(body).contains("https://www.example.com");
         }
 
-         @Test
+        @Test
         void testCreateUrl() {
             String inputName = "https://www.ya.ru";
             HttpResponse<String> responsePost = Unirest
@@ -132,10 +132,10 @@ class AppTest {
                     .field("url", inputName)
                     .asEmpty();
 
-            assertThat(responsePost1.getHeaders().getFirst("Location")).isEqualTo("");
+            assertThat(responsePost1.getHeaders().getFirst("Location")).isEqualTo("/");
 
             HttpResponse<String> response = Unirest
-                    .get(baseUrl+ "/")
+                    .get(baseUrl + "/")
                     .asString();
             String body = response.getBody();
 
@@ -151,7 +151,7 @@ class AppTest {
                     .field("url", inputName)
                     .asEmpty();
 
-            assertThat(responsePost1.getHeaders().getFirst("Location")).isEqualTo("");
+            assertThat(responsePost1.getHeaders().getFirst("Location")).isEqualTo("/urls");
 
             HttpResponse<String> response = Unirest
                     .get(baseUrl + "/urls")
