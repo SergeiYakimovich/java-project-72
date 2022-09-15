@@ -2,7 +2,6 @@ package hexlet.code;
 
 import hexlet.code.domain.Url;
 import hexlet.code.domain.UrlCheck;
-
 import java.net.URL;
 
 public class UrlHandler {

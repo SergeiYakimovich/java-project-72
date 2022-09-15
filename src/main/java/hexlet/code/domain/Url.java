@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import io.ebean.annotation.WhenCreated;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,14 +22,15 @@ public class Url extends Model {
     @WhenCreated
     private Timestamp createdAt;
 
-//    private List<UrlCheck> urlChecks;
+    @OneToMany
+    private List<UrlCheck> urlChecks;
 
     public Url() {
     }
 
     public Url(String nameValue) {
         name = nameValue;
-//        urlChecks = new ArrayList<>();
+        urlChecks = new ArrayList<>();
     }
 
     public final long getId() {
@@ -43,11 +45,12 @@ public class Url extends Model {
         return createdAt;
     }
 
-//    public final List<UrlCheck> getUrlChecks() {
-//        return urlChecks;
-//    }
-//
-//    public final void addUrlChecks(UrlCheck newUrlCheckValue) {
-//        this.urlChecks.add(newUrlCheckValue);
-//    }
+    public final List<UrlCheck> getUrlChecks() {
+        return urlChecks;
+    }
+
+    public final void addUrlChecks(UrlCheck newUrlCheckValue) {
+        this.urlChecks.add(newUrlCheckValue);
+    }
+
 }

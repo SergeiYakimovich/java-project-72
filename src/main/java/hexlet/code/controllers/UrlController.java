@@ -73,18 +73,18 @@ public final class UrlController {
     };
 
     public static Handler checkUrl = ctx -> {
-//        int id = ctx.pathParamAsClass("id", Integer.class).getOrDefault(null);
-//        Url url = new QUrl()
-//                .id.equalTo(id)
-//                .findOne();
-//        if (url == null) {
-//            throw new NotFoundResponse();
-//        }
-//        url.addUrlChecks(UrlHandler.checkUrl(url));
-//        url.update();
-//        ctx.attribute("url", url);
-//        ctx.render("showUrl.html");
-        ctx.redirect("/urls");
+        int id = ctx.pathParamAsClass("id", Integer.class).getOrDefault(null);
+        Url url = new QUrl()
+                .id.equalTo(id)
+                .findOne();
+        if (url == null) {
+            throw new NotFoundResponse();
+        }
+        url.addUrlChecks(UrlHandler.checkUrl(url));
+        url.update();
+        ctx.attribute("url", url);
+        ctx.render("showUrl.html");
+//        ctx.redirect("/urls");
     };
 
 }
