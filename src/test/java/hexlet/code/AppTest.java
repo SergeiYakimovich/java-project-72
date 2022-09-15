@@ -37,14 +37,6 @@ class AppTest {
         int port = app.port();
         baseUrl = "http://localhost:" + port;
         database = DB.getDefault();
-//        HttpResponse<String> responsePost = Unirest
-//                .post(baseUrl + "/urls")
-//                .field("url", "https://www.example.com")
-//                .asEmpty();
-//        HttpResponse<String> responsePost1 = Unirest
-//                .post(baseUrl + "/urls")
-//                .field("url", "https://www.yandex.ru")
-//                .asEmpty();
     }
 
     @AfterAll
