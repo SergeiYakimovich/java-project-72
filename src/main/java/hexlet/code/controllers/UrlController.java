@@ -1,6 +1,6 @@
 package hexlet.code.controllers;
 
-import hexlet.code.UrlParser;
+import hexlet.code.UrlHandler;
 import hexlet.code.domain.Url;
 import hexlet.code.domain.query.QUrl;
 import io.javalin.http.Handler;
@@ -47,12 +47,10 @@ public final class UrlController {
     };
 
     public static Handler createUrl = ctx -> {
-        String name = UrlParser.getUrl(ctx.formParam("url"));
+        String name = UrlHandler.getUrl(ctx.formParam("url"));
         if (name == null) {
             ctx.sessionAttribute("flash", "Некорректный URL");
             ctx.sessionAttribute("flash-type", "danger");
-//            ctx.attribute("url", name);
-//            ctx.render("main.html");
             ctx.redirect("/");
             return;
         }
@@ -63,8 +61,6 @@ public final class UrlController {
         if (url != null) {
             ctx.sessionAttribute("flash", "Страница уже существует");
             ctx.sessionAttribute("flash-type", "danger");
-//            ctx.attribute("url", name);
-//            ctx.render("main.html");
             ctx.redirect("/urls");
             return;
         }
@@ -74,6 +70,20 @@ public final class UrlController {
         ctx.sessionAttribute("flash", "Страница успешно добавлена");
         ctx.sessionAttribute("flash-type", "success");
         ctx.redirect("/urls");
+    };
+
+    public static Handler checkUrl = ctx -> {
+        int id = ctx.pathParamAsClass("id", Integer.class).getOrDefault(null);
+        Url url = new QUrl()
+                .id.equalTo(id)
+                .findOne();
+        if (url == null) {
+            throw new NotFoundResponse();
+        }
+        url.addUrlChecks(UrlHandler.checkUrl(url));
+        url.update();
+        ctx.attribute("url", url);
+        ctx.render("showUrl.html");
     };
 
 }

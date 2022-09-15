@@ -1,8 +1,15 @@
 package hexlet.code;
 
+import hexlet.code.domain.Url;
+import hexlet.code.domain.UrlCheck;
+
 import java.net.URL;
 
-public class UrlParser {
+public class UrlHandler {
+    public static UrlCheck checkUrl(Url url) {
+        return new UrlCheck(123, "title", "h1", "description", url);
+    }
+
     public static String getUrl(String str) {
         if (str == null || str.isEmpty()) {
             return null;
@@ -18,7 +25,6 @@ public class UrlParser {
         } catch (Exception e) {
             return null;
         }
-
     }
 
 }
