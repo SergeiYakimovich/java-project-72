@@ -29,28 +29,28 @@
             </div>
         </nav>
 
-        <table class="table table-bordered table-hover mt-3">
-            <thead>
-            <tr>
-                <th class="col-1">ID</th>
-                <th>Код ответа</th>
-                <th class="col-2">title</th>
-                <th class="col-1">h1</th>
-                <th class="col-1">description</th>
-                <th class="col-1">Дата проверки</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="item : ${url.getUrlChecks()}" th:object="${item}">
-                <td th:text="*{getId()}"></td>
-                <td th:text="*{getStatusCode()}"></td>
-                <td th:text="*{getTitle()}"></td>
-                <td th:text="*{getH1()}"></td>
-                <td th:text="*{getDescription()}"></td>
-                <td th:text="*{getCreatedAt()}"></td>
-            </tr>
-            </tbody>
-        </table>
+<!--        <table class="table table-bordered table-hover mt-3">-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--                <th class="col-1">ID</th>-->
+<!--                <th>Код ответа</th>-->
+<!--                <th class="col-2">title</th>-->
+<!--                <th class="col-1">h1</th>-->
+<!--                <th class="col-1">description</th>-->
+<!--                <th class="col-1">Дата проверки</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr th:each="item : ${url.getUrlChecks()}" th:object="${item}">-->
+<!--                <td th:text="*{getId()}"></td>-->
+<!--                <td th:text="*{getStatusCode()}"></td>-->
+<!--                <td th:text="*{getTitle()}"></td>-->
+<!--                <td th:text="*{getH1()}"></td>-->
+<!--                <td th:text="*{getDescription()}"></td>-->
+<!--                <td th:text="*{getCreatedAt()}"></td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
     </div>
 </section>
 </html>

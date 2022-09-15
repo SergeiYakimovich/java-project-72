@@ -21,14 +21,14 @@ public class Url extends Model {
     @WhenCreated
     private Timestamp createdAt;
 
-    private List<UrlCheck> urlChecks;
+//    private List<UrlCheck> urlChecks;
 
     public Url() {
     }
 
     public Url(String nameValue) {
         name = nameValue;
-        urlChecks = new ArrayList<>();
+//        urlChecks = new ArrayList<>();
     }
 
     public final long getId() {
@@ -43,11 +43,11 @@ public class Url extends Model {
         return createdAt;
     }
 
-    public final List<UrlCheck> getUrlChecks() {
-        return urlChecks;
-    }
-
-    public final void addUrlChecks(UrlCheck newUrlCheckValue) {
-        this.urlChecks.add(newUrlCheckValue);
-    }
+//    public final List<UrlCheck> getUrlChecks() {
+//        return urlChecks;
+//    }
+//
+//    public final void addUrlChecks(UrlCheck newUrlCheckValue) {
+//        this.urlChecks.add(newUrlCheckValue);
+//    }
 }
