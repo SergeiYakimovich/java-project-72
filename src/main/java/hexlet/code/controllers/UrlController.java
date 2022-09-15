@@ -2,7 +2,9 @@ package hexlet.code.controllers;
 
 import hexlet.code.UrlHandler;
 import hexlet.code.domain.Url;
+import hexlet.code.domain.UrlCheck;
 import hexlet.code.domain.query.QUrl;
+import hexlet.code.domain.query.QUrlCheck;
 import io.javalin.http.Handler;
 import io.javalin.http.NotFoundResponse;
 import io.ebean.PagedList;
@@ -42,7 +44,11 @@ public final class UrlController {
         if (url == null) {
             throw new NotFoundResponse();
         }
+        List<UrlCheck> checks = new QUrlCheck().url.equalTo(url)
+                .orderBy().id.desc()
+                .findList();
         ctx.attribute("url", url);
+        ctx.attribute("checks", checks);
         ctx.render("showUrl.html");
     };
 
@@ -81,10 +87,9 @@ public final class UrlController {
             throw new NotFoundResponse();
         }
 
-        url.addUrlChecks(UrlHandler.checkUrl(url));
-        url.update();
-//        url.save();
-        ctx.attribute("url", url);
+        UrlCheck check = UrlHandler.checkUrl(url);
+        check.save();
+
         ctx.sessionAttribute("flash", "Страница успешно проверена");
         ctx.sessionAttribute("flash-type", "success");
         ctx.redirect("/urls/" + url.getId());
