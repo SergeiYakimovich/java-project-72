@@ -6,7 +6,7 @@ import java.net.URL;
 
 public class UrlHandler {
     public static UrlCheck checkUrl(Url url) {
-        return new UrlCheck((long) Math.random(), "title", "h1", "description", url);
+        return new UrlCheck((long) Math.random() * 100, "title", "h1", "description", url);
     }
 
     public static String getUrl(String str) {

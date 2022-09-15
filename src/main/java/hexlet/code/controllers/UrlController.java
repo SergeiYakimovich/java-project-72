@@ -85,8 +85,9 @@ public final class UrlController {
         url.update();
 //        url.save();
         ctx.attribute("url", url);
-        ctx.render("showUrl.html");
-//        ctx.redirect("/urls");
+        ctx.sessionAttribute("flash", "Страница успешно проверена");
+        ctx.sessionAttribute("flash-type", "success");
+        ctx.redirect("/urls/" + url.getId());
     };
 
 }

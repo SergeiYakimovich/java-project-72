@@ -25,8 +25,8 @@
                 <td>
                     <a th:href="@{/urls/{id}(id=*{getId()})}" th:text="*{getName()}"></a>
                 </td>
+                <td th:text="*{getLastUrlCheck()} != null ? *{getLastUrlCheck().getCreatedAt()} : '-' "></td>
                 <td th:text="*{getLastUrlCheck()} != null ? *{getLastUrlCheck().getStatusCode()} : '-' "></td>
-                <td ></td>
             </tr>
             </tbody>
         </table>
