@@ -41,17 +41,23 @@
             </tr>
             </thead>
             <tbody>
-            <style>
+            <tr th:each="item : ${checks}" th:object="${item}">
+                <style>
                 td {
                     overflow: hidden;
                     text-overflow: ellipsis;
                 }
-            </style>
-            <tr th:each="item : ${checks}" th:object="${item}">
+                </style>
                 <td th:text="*{getId()}"></td>
                 <td th:text="*{getStatusCode()}"></td>
                 <td th:text="*{getTitle()}"></td>
                 <td th:text="*{getH1()}"></td>
+                <style>
+                td {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                </style>
                 <td th:text="*{getDescription()}"></td>
                 <td th:text="*{getCreatedAt()}"></td>
             </tr>
