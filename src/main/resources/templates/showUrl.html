@@ -41,6 +41,12 @@
             </tr>
             </thead>
             <tbody>
+            <style>
+                td {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            </style>
             <tr th:each="item : ${checks}" th:object="${item}">
                 <td th:text="*{getId()}"></td>
                 <td th:text="*{getStatusCode()}"></td>
