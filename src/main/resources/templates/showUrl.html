@@ -40,20 +40,24 @@
                 <th scope="col">Дата проверки</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody style="height: 20px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;">
             <tr th:each="item : ${checks}" th:object="${item}">
                 <td th:text="*{getId()}"></td>
                 <td th:text="*{getStatusCode()}"></td>
                 <td th:text="*{getTitle()}"></td>
-                <td th:text="*{getH1()}"></td>
                 <style>
                 td {
-                    height:
+                    height: 20px;
                     overflow: hidden;
                     text-overflow: ellipsis;
                 }
                 </style>
-                <td th:text="*{getDescription()}"></td>
+                <td th:text="*{getH1()}"></td>
+                <td style="height: 20px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;" th:text="*{getDescription()}"></td>
                 <td th:text="*{getCreatedAt()}"></td>
             </tr>
             </tbody>
