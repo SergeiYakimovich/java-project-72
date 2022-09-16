@@ -42,16 +42,16 @@
             </thead>
             <tbody>
             <tr th:each="item : ${checks}" th:object="${item}">
+                <style>
+                    td {
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                </style>
                 <td class="col-sm-2" th:text="*{getId()}"></td>
                 <td class="col-sm-2" th:text="*{getStatusCode()}"></td>
                 <td class="col-sm-2" th:text="*{getTitle()}"></td>
-<!--                <style>-->
-<!--                td {-->
-<!--                    white-space: nowrap;-->
-<!--                    overflow: hidden;-->
-<!--                    text-overflow: ellipsis;-->
-<!--                }-->
-<!--                </style>-->
                 <td class="col-sm-2" th:text="*{getH1()}"></td>
                 <td class="col-sm-2" th:text="*{getDescription()}"></td>
                 <td class="col-sm-2" th:text="*{getCreatedAt()}"></td>

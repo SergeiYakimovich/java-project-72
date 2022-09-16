@@ -3,7 +3,6 @@ package hexlet.code;
 import hexlet.code.domain.Url;
 import hexlet.code.domain.UrlCheck;
 import java.net.URL;
-
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
 import org.jsoup.Jsoup;
@@ -52,13 +51,7 @@ public class UrlHandler {
         }
         try {
             URL url = new URL(str);
-            String result = url.getProtocol();
-            if (result == "") {
-                result = "https://";
-            } else {
-                result = result + "://";
-            }
-            result = result + url.getHost();
+            String result = url.getProtocol() + "://" + url.getHost();
             int port = url.getPort();
             if (port > 0) {
                 result = result + ":" + port;

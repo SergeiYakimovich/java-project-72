@@ -68,4 +68,3 @@ public class UrlCheck extends Model {
     }
 
 }
-
