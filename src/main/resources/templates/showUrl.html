@@ -32,22 +32,16 @@
         <table class="table table-bordered table-hover mt-3">
             <thead>
             <tr>
-                <th class="col-1">ID</th>
-                <th class="col-1">Код ответа</th>
-                <th class="col-1">title</th>
-                <th class="col-1">h1</th>
-                <th class="col-1">description</th>
-                <th class="col-1">Дата проверки</th>
+                <th scope="col">ID</th>
+                <th scope="col">Код ответа</th>
+                <th scope="col">title</th>
+                <th scope="col">h1</th>
+                <th scope="col">description</th>
+                <th scope="col">Дата проверки</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="item : ${checks}" th:object="${item}">
-                <style>
-                td {
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                }
-                </style>
                 <td th:text="*{getId()}"></td>
                 <td th:text="*{getStatusCode()}"></td>
                 <td th:text="*{getTitle()}"></td>
