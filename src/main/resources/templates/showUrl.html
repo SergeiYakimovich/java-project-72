@@ -29,36 +29,32 @@
             </nav>
         </form>
 
-        <table class="table table-bordered table-hover mt-3">
+        <table class="table table-bordered table-hover mt-3" style="table-layout:fixed;">
             <thead>
             <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Код ответа</th>
-                <th scope="col">title</th>
-                <th scope="col">h1</th>
-                <th scope="col">description</th>
-                <th scope="col">Дата проверки</th>
+                <th class="col-sm-2">ID</th>
+                <th class="col-sm-2">Код ответа</th>
+                <th class="col-sm-2">title</th>
+                <th class="col-sm-2">h1</th>
+                <th class="col-sm-2">description</th>
+                <th class="col-sm-2">Дата проверки</th>
             </tr>
             </thead>
-            <tbody style="height: 20px;
-                    overflow: hidden;
-                    text-overflow: ellipsis;">
+            <tbody>
             <tr th:each="item : ${checks}" th:object="${item}">
-                <td th:text="*{getId()}"></td>
-                <td th:text="*{getStatusCode()}"></td>
-                <td th:text="*{getTitle()}"></td>
+                <td class="col-sm-2" th:text="*{getId()}"></td>
+                <td class="col-sm-2" th:text="*{getStatusCode()}"></td>
+                <td class="col-sm-2" th:text="*{getTitle()}"></td>
                 <style>
                 td {
-                    height: 20px;
+                    white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
                 }
                 </style>
-                <td th:text="*{getH1()}"></td>
-                <td style="height: 20px;
-                    overflow: hidden;
-                    text-overflow: ellipsis;" th:text="*{getDescription()}"></td>
-                <td th:text="*{getCreatedAt()}"></td>
+                <td class="col-sm-2" th:text="*{getH1()}"></td>
+                <td class="col-sm-2" th:text="*{getDescription()}"></td>
+                <td class="col-sm-2" th:text="*{getCreatedAt()}"></td>
             </tr>
             </tbody>
         </table>
