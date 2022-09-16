@@ -50,9 +50,9 @@ public class Url extends Model {
         return urlChecks;
     }
 
-    public final void addUrlChecks(UrlCheck newUrlCheckValue) {
-        this.urlChecks.add(newUrlCheckValue);
-    }
+//    public final void addUrlChecks(UrlCheck newUrlCheckValue) {
+//        this.urlChecks.add(newUrlCheckValue);
+//    }
 
     public final UrlCheck getLastUrlCheck() {
         return urlChecks.stream()

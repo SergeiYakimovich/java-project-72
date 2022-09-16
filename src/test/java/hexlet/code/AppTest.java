@@ -7,16 +7,17 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-
+import static java.nio.file.Files.readString;
 import static org.assertj.core.api.Assertions.assertThat;
-
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
 import io.javalin.Javalin;
 import io.ebean.DB;
 import io.ebean.Database;
-
-
+import okhttp3.mockwebserver.MockResponse;
+import okhttp3.mockwebserver.MockWebServer;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Paths;
 
 class AppTest {
 
@@ -137,7 +138,6 @@ class AppTest {
         @Test
         void testCreateExistingUrl() {
             String inputName = "https://www.example.com";
-
             HttpResponse<String> responsePost1 = Unirest
                     .post(baseUrl + "/urls")
                     .field("url", inputName)
@@ -152,6 +152,30 @@ class AppTest {
 
             assertThat(body).contains(inputName);
             assertThat(body).contains("Страница уже существует");
+        }
+
+        @Test
+        public void testCheckUrl() throws Exception {
+            String mockHtml = readString(Paths.get("src/test/resources/mock_test.html"), StandardCharsets.US_ASCII);
+            MockWebServer server = new MockWebServer();
+            server.enqueue(new MockResponse().setBody(mockHtml));
+
+            server.start();
+            String mockUrl = server.url("/").toString();
+            HttpResponse<String> response = Unirest.post(baseUrl + "/urls")
+                    .field("url", mockUrl)
+                    .asEmpty();
+            Url url = new QUrl().name.equalTo(mockUrl.substring(0, mockUrl.length() - 1))
+                    .findOne();
+            HttpResponse<String> responseCheck = Unirest.post(baseUrl + "/urls/" + url.getId() + "/checks")
+                    .asEmpty();
+            HttpResponse<String> responseShow = Unirest.get(baseUrl + "/urls/" + url.getId()).asString();
+            server.shutdown();
+
+            assertThat(200).isEqualTo(responseShow.getStatus());
+            assertThat(responseShow.getBody()).contains("Title");
+            assertThat(responseShow.getBody()).contains("H1_text");
+            assertThat(responseShow.getBody()).contains("Description_text");
         }
 
     }

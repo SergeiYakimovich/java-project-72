@@ -86,12 +86,15 @@ public final class UrlController {
         if (url == null) {
             throw new NotFoundResponse();
         }
-
         UrlCheck check = UrlHandler.checkUrl(url);
-        check.save();
-
-        ctx.sessionAttribute("flash", "Страница успешно проверена");
-        ctx.sessionAttribute("flash-type", "success");
+        if (check != null) {
+            check.save();
+            ctx.sessionAttribute("flash", "Страница успешно проверена");
+            ctx.sessionAttribute("flash-type", "success");
+        } else {
+            ctx.sessionAttribute("flash", "Проверка не удалась");
+            ctx.sessionAttribute("flash-type", "danger");
+        }
         ctx.redirect("/urls/" + url.getId());
     };
 
