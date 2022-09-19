@@ -1,7 +1,7 @@
 .env
-.idea
+.idea/
 .gradle
-database.mv.db
+*.db
 
 build
 
