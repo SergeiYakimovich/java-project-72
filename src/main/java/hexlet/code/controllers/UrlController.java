@@ -1,6 +1,6 @@
 package hexlet.code.controllers;
 
-import hexlet.code.UrlHandler;
+import hexlet.code.utilities.UrlHandler;
 import hexlet.code.domain.Url;
 import hexlet.code.domain.UrlCheck;
 import hexlet.code.domain.query.QUrl;

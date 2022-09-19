@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import io.ebean.annotation.WhenCreated;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.CascadeType;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -23,11 +24,8 @@ public class Url extends Model {
     @WhenCreated
     private Timestamp createdAt;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<UrlCheck> urlChecks;
-
-    public Url() {
-    }
 
     public Url(String nameValue) {
         name = nameValue;
